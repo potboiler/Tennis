@@ -2,7 +2,7 @@ package com.project.tennis.viewmodel
 
 import android.arch.lifecycle.ViewModel
 
-class TennisViewModel: ViewModel(){
+class TennisViewModel : ViewModel() {
     var playerOnePoints = 0
     var playerTwoPoints = 0
 
@@ -16,14 +16,21 @@ class TennisViewModel: ViewModel(){
 
 
     fun getMatchScore(): String {
-        if(playerOnePoints == playerTwoPoints){
+        if (isDeuce()) {
+            return "Deuce"
+        }
+        if (playerOnePoints == playerTwoPoints) {
             return convertPointsToScore(playerOnePoints) + " all"
         }
         return convertPointsToScore(playerOnePoints) + ", " + convertPointsToScore(playerTwoPoints)
     }
 
-    private fun convertPointsToScore(points: Int): String{
-        when(points) {
+    private fun isDeuce(): Boolean {
+        return playerOnePoints >= 3 && playerOnePoints == playerTwoPoints
+    }
+
+    private fun convertPointsToScore(points: Int): String {
+        when (points) {
             0 -> return "0"
             1 -> return "15"
             2 -> return "30"
