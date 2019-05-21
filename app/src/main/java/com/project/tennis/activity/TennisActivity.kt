@@ -16,14 +16,16 @@ class TennisActivity : AppCompatActivity(), View.OnClickListener {
         setContentView(R.layout.activity_tennis)
 
         tennisViewModel = TennisViewModel()
+
         point_to_player_one.setOnClickListener(this)
         point_to_player_two.setOnClickListener(this)
+        restart_set.setOnClickListener(this)
 
         updateScoreOnUi()
     }
 
     override fun onClick(view: View) {
-        when (view.id){
+        when (view.id) {
             R.id.point_to_player_one -> {
                 tennisViewModel.playerOneScores()
                 updateScoreOnUi()
@@ -31,6 +33,11 @@ class TennisActivity : AppCompatActivity(), View.OnClickListener {
 
             R.id.point_to_player_two -> {
                 tennisViewModel.playerTwoScores()
+                updateScoreOnUi()
+            }
+
+            R.id.restart_set -> {
+                tennisViewModel.resetScore()
                 updateScoreOnUi()
             }
         }
