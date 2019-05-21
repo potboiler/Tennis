@@ -42,4 +42,12 @@ class TennisViewModelUnitTest {
         tennisViewModel.playerOneScores()
         assertEquals("30", tennisViewModel.checkPlayerOneScore())
     }
+
+    @Test
+    fun testIfPlayerOneHasScoredFirstThreePoints(){
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerOneScores()
+        assertEquals("40", tennisViewModel.checkPlayerOneScore())
+    }
 }
