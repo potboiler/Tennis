@@ -25,31 +25,31 @@ class TennisViewModel : ViewModel() {
         if (isDeuce()) {
             return "Deuce"
         }
-        if (playerOnePoints == playerTwoPoints) {
+        if (checkForEqualPoints()) {
             return convertPointsToScore(playerOnePoints) + " all"
         }
         return convertPointsToScore(playerOnePoints) + ", " + convertPointsToScore(playerTwoPoints)
     }
 
     private fun isDeuce(): Boolean {
-        return playerOnePoints >= 3 && playerOnePoints == playerTwoPoints
+        return checkForThreeOrMorePoints(playerOnePoints) && checkForEqualPoints()
     }
 
     private fun playerHasAdvantage(): Boolean {
-        if (playerOnePoints >= 4 && playerOnePoints == playerTwoPoints + 1) {
+        if (checkForThreeOrMorePoints(playerOnePoints) && checkForOnePointMoreThanOther(playerOnePoints, playerTwoPoints)) {
             return true
         }
-        if (playerTwoPoints >= 4 && playerTwoPoints == playerOnePoints + 1) {
+        if (checkForThreeOrMorePoints(playerTwoPoints) && checkForOnePointMoreThanOther(playerTwoPoints, playerOnePoints)) {
             return true
         }
         return false
     }
 
     private fun playerHasWon(): Boolean {
-        if (playerOnePoints >= 4 && playerOnePoints >= playerTwoPoints + 2) {
+        if (checkForFourOrMorePoints(playerOnePoints) && checkForMoreThanOnePointThanOther(playerOnePoints, playerTwoPoints)) {
             return true
         }
-        if (playerTwoPoints >= 4 && playerTwoPoints >= playerOnePoints + 2) {
+        if (checkForFourOrMorePoints(playerTwoPoints) && checkForMoreThanOnePointThanOther(playerTwoPoints, playerOnePoints)) {
             return true
         }
         return false
@@ -61,6 +61,26 @@ class TennisViewModel : ViewModel() {
         } else{
             return "PlayerTwo"
         }
+    }
+
+    private fun checkForFourOrMorePoints(points: Int): Boolean {
+        return points >= 4
+    }
+
+    private fun checkForThreeOrMorePoints(points: Int): Boolean {
+        return points >= 3
+    }
+
+    private fun checkForEqualPoints(): Boolean {
+        return playerOnePoints == playerTwoPoints
+    }
+
+    private fun checkForOnePointMoreThanOther(valueOne: Int, valueTwo: Int): Boolean {
+        return valueOne == valueTwo + 1
+    }
+
+    private fun checkForMoreThanOnePointThanOther(valueOne: Int, valueTwo: Int): Boolean {
+        return valueOne >= valueTwo + 2
     }
 
     private fun convertPointsToScore(points: Int): String {

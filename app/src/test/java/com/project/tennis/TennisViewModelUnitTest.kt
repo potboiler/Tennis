@@ -17,8 +17,7 @@ class TennisViewModelUnitTest {
     }
     @Test
     fun testShouldCheckIfPlayersPointsAreAtLoveForNewGame() {
-        assertEquals(0, tennisViewModel.playerOnePoints)
-        assertEquals(0, tennisViewModel.playerTwoPoints)
+        assertEquals("0 all", tennisViewModel.getMatchScore())
     }
 
     @Test
