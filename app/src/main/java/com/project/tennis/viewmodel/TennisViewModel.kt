@@ -14,6 +14,14 @@ class TennisViewModel: ViewModel(){
         playerTwoPoints += 1
     }
 
+
+    fun getMatchScore(): String {
+        if(playerOnePoints == playerTwoPoints){
+            return convertPointsToScore(playerOnePoints) + " all"
+        }
+        return convertPointsToScore(playerOnePoints) + ", " + convertPointsToScore(playerTwoPoints)
+    }
+
     fun checkPlayerOneScore() : String {
         return convertPointsToScore(playerOnePoints)
     }

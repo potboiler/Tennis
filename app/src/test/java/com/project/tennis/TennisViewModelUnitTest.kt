@@ -50,4 +50,13 @@ class TennisViewModelUnitTest {
         tennisViewModel.playerOneScores()
         assertEquals("40", tennisViewModel.checkPlayerOneScore())
     }
+
+    @Test
+    fun testShouldReturnAllInScoreIfBothPlayersScoresEqualPoints(){
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerTwoScores()
+        tennisViewModel.playerTwoScores()
+        assertEquals("30 all", tennisViewModel.getMatchScore())
+    }
 }
