@@ -3,5 +3,5 @@
     <string name="match_score_heading">Score</string>
     <string name="score_to_player_two">Point to Player Two</string>
     <string name="score_to_player_one">Point to Player One</string>
-    <string name="restart_set">Restart set</string>
+    <string name="restart_set">Reset score</string>
 </resources>
