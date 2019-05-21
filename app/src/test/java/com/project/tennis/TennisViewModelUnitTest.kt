@@ -79,7 +79,7 @@ class TennisViewModelUnitTest {
         tennisViewModel.playerTwoScores()
         tennisViewModel.playerTwoScores()
         tennisViewModel.playerTwoScores()
-        assertEquals("Advantage", tennisViewModel.getMatchScore())
+        assertEquals("Advantage for PlayerOne", tennisViewModel.getMatchScore())
     }
 
     @Test
@@ -92,6 +92,6 @@ class TennisViewModelUnitTest {
         tennisViewModel.playerTwoScores()
         tennisViewModel.playerTwoScores()
         tennisViewModel.playerTwoScores()
-        assertEquals("Win", tennisViewModel.getMatchScore())
+        assertEquals("PlayerTwo Wins", tennisViewModel.getMatchScore())
     }
 }

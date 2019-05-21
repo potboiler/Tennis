@@ -17,10 +17,10 @@ class TennisViewModel : ViewModel() {
     fun getMatchScore(): String {
 
         if(playerHasWon()){
-            return "Win"
+            return playerWithHighestScore() + "Wins"
         }
         if (playerHasAdvantage()) {
-            return "Advantage"
+            return "Advantage for " + playerWithHighestScore()
         }
         if (isDeuce()) {
             return "Deuce"
@@ -53,6 +53,14 @@ class TennisViewModel : ViewModel() {
             return true
         }
         return false
+    }
+
+    private fun playerWithHighestScore(): String {
+        if(playerOnePoints > playerTwoPoints){
+            return "PlayerOne"
+        } else{
+            return "PlayerTwo"
+        }
     }
 
     private fun convertPointsToScore(points: Int): String {
