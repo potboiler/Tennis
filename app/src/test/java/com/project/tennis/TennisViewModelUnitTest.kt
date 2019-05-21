@@ -71,7 +71,7 @@ class TennisViewModelUnitTest {
     }
 
     @Test
-    fun testShouldReturnAdvantageIfAnyPlayerScoresAPointAfterDeuce() {
+    fun testShouldReturnAdvantagePlayerTwoIfTheyScoreAPointAfterDeuce() {
         tennisViewModel.playerOneScores()
         tennisViewModel.playerOneScores()
         tennisViewModel.playerOneScores()
@@ -79,11 +79,23 @@ class TennisViewModelUnitTest {
         tennisViewModel.playerTwoScores()
         tennisViewModel.playerTwoScores()
         tennisViewModel.playerTwoScores()
+        assertEquals("Advantage for PlayerTwo", tennisViewModel.getMatchScore())
+    }
+
+    @Test
+    fun testShouldReturnAdvantagePlayerOneIfTheyScoreAPointAfterDeuce() {
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerTwoScores()
+        tennisViewModel.playerTwoScores()
+        tennisViewModel.playerTwoScores()
+        tennisViewModel.playerOneScores()
         assertEquals("Advantage for PlayerOne", tennisViewModel.getMatchScore())
     }
 
     @Test
-    fun testShouldReturnWinIfAnyPlayesScoresAPointAfterTheirAdvantage() {
+    fun testShouldReturnPlayerTwoWinsIfTheyScoreAPointAfterAdvantage() {
         tennisViewModel.playerOneScores()
         tennisViewModel.playerOneScores()
         tennisViewModel.playerOneScores()
@@ -93,5 +105,18 @@ class TennisViewModelUnitTest {
         tennisViewModel.playerTwoScores()
         tennisViewModel.playerTwoScores()
         assertEquals("PlayerTwo Wins", tennisViewModel.getMatchScore())
+    }
+
+    @Test
+    fun testShouldReturnPlayerOneWinsIfTheyScoreAPointAfterAdvantage() {
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerTwoScores()
+        tennisViewModel.playerTwoScores()
+        tennisViewModel.playerTwoScores()
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerOneScores()
+        assertEquals("PlayerOne Wins", tennisViewModel.getMatchScore())
     }
 }
