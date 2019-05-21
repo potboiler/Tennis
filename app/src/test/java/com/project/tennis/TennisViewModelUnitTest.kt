@@ -78,7 +78,20 @@ class TennisViewModelUnitTest {
         tennisViewModel.playerTwoScores()
         tennisViewModel.playerTwoScores()
         tennisViewModel.playerTwoScores()
-        tennisViewModel.playerOneScores()
+        tennisViewModel.playerTwoScores()
         assertEquals("Advantage", tennisViewModel.getMatchScore())
+    }
+
+    @Test
+    fun testShouldReturnWinIfAnyPlayesScoresAPointAfterTheirAdvantage() {
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerTwoScores()
+        tennisViewModel.playerTwoScores()
+        tennisViewModel.playerTwoScores()
+        tennisViewModel.playerTwoScores()
+        tennisViewModel.playerTwoScores()
+        assertEquals("Win", tennisViewModel.getMatchScore())
     }
 }
