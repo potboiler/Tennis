@@ -27,12 +27,19 @@ class TennisViewModelUnitTest {
         tennisViewModel.playerTwoScores()
         assertEquals("15", tennisViewModel.checkPlayerTwoScore())
     }
-    
+
     @Test
     fun testIfBothPlayersScoredOnePointEach() {
         tennisViewModel.playerOneScores()
         tennisViewModel.playerTwoScores()
         assertEquals("15", tennisViewModel.checkPlayerOneScore())
         assertEquals("15", tennisViewModel.checkPlayerTwoScore())
+    }
+
+    @Test
+    fun testIfPlayerOneHasScoredFirstTwoPoints(){
+        tennisViewModel.playerOneScores()
+        tennisViewModel.playerOneScores()
+        assertEquals("30", tennisViewModel.checkPlayerOneScore())
     }
 }
