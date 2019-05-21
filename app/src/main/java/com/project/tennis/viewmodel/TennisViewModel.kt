@@ -1,10 +1,22 @@
 package com.project.tennis.viewmodel
 
 import android.arch.lifecycle.ViewModel
+import com.project.tennis.model.Players
 
 class TennisViewModel : ViewModel() {
     var playerOnePoints = 0
     var playerTwoPoints = 0
+
+    companion object {
+        const val POINT_LOVE = "0"
+        const val POINT_ONE = "15"
+        const val POINT_TWO = "30"
+        const val POINT_THREE = "40"
+        const val POINT_EQUAL = "All"
+        const val MATCH_STATUS_DEUCE = "Deuce"
+        const val MATCH_STATUS_ADVANTAGE = "Advantage"
+        const val MATCH_STATUS_WON = "Wins"
+    }
 
     fun playerOneScores() {
         playerOnePoints += 1
@@ -17,18 +29,18 @@ class TennisViewModel : ViewModel() {
     fun getMatchScore(): String {
 
         if(playerHasWon()){
-            return playerWithHighestScore() + " Wins"
+            return playerWithHighestScore() + " " + MATCH_STATUS_WON
         }
         if (playerHasAdvantage()) {
-            return "Advantage for " + playerWithHighestScore()
+            return MATCH_STATUS_ADVANTAGE + " " + playerWithHighestScore()
         }
         if (isDeuce()) {
-            return "Deuce"
+            return MATCH_STATUS_DEUCE
         }
         if (checkForEqualPoints()) {
-            return convertPointsToScore(playerOnePoints) + " all"
+            return convertPointsToScore(playerOnePoints) + " " + POINT_EQUAL
         }
-        return convertPointsToScore(playerOnePoints) + ", " + convertPointsToScore(playerTwoPoints)
+        return convertPointsToScore(playerOnePoints) + " - " + convertPointsToScore(playerTwoPoints)
     }
 
     private fun isDeuce(): Boolean {
@@ -57,9 +69,9 @@ class TennisViewModel : ViewModel() {
 
     private fun playerWithHighestScore(): String {
         if(playerOnePoints > playerTwoPoints){
-            return "PlayerOne"
+            return Players.PLAYER_ONE_NAME
         } else{
-            return "PlayerTwo"
+            return Players.PLAYER_TWO_NAME
         }
     }
 
@@ -85,10 +97,10 @@ class TennisViewModel : ViewModel() {
 
     private fun convertPointsToScore(points: Int): String {
         when (points) {
-            0 -> return "0"
-            1 -> return "15"
-            2 -> return "30"
-            3 -> return "40"
+            0 -> return POINT_LOVE
+            1 -> return POINT_ONE
+            2 -> return POINT_TWO
+            3 -> return POINT_THREE
         }
         return ""
     }
