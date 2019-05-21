@@ -11,8 +11,15 @@ class TennisViewModelUnitTest {
     private var tennisViewModel = TennisViewModel()
 
     @Test
-    fun testShouldCheckIfBothPlayersScoreAreLoveAtStart() {
-        assertEquals(0, tennisViewModel.playerOneScore)
-        assertEquals(0, tennisViewModel.playerTwoScore)
+    fun testShouldCheckIfPlayersPointsAreAtLoveForNewGame() {
+        assertEquals(0, tennisViewModel.playerOnePoints)
+        assertEquals(0, tennisViewModel.playerTwoPoints)
+    }
+
+    @Test
+    fun testPlayerOneWinsFirstBall() {
+        tennisViewModel.playerOneScores()
+        assertEquals("15", tennisViewModel.checkPlayerOneScore())
+
     }
 }
